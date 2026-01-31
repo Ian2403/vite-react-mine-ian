@@ -11,7 +11,8 @@ type Personal = {
 
 export default function InfoPersonalPage() {
   const [data, setData] = useState<Personal[]>([]);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.title = "Info Personal | Veterinaria";
@@ -19,6 +20,7 @@ export default function InfoPersonalPage() {
 
   const obtenerInfo = async () => {
     try {
+      setLoading(true);
       setError("");
 
       const res = await fetch("https://veterinaria-steel.vercel.app/api/infoPersonal");
@@ -29,29 +31,54 @@ export default function InfoPersonalPage() {
     } catch (err) {
       setError("No se pudo obtener la información");
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
-      <h1 style={{ marginTop: 0 }}>Información del Personal</h1>
+    <div className="card" style={{ padding: 18 }}>
+      <h1 className="h1">Información del Personal</h1>
+      <p className="p">Consulta y visualiza los registros desde la API.</p>
 
-      <button onClick={obtenerInfo} style={{ padding: "8px 12px", borderRadius: 10 }}>
-        Consultar API
-      </button>
+      <div style={{ marginTop: 12 }}>
+        <button className="btn btnPrimary" onClick={obtenerInfo}>
+          Consultar API
+        </button>
+      </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {loading && <p style={{ marginTop: 12 }}>Cargando...</p>}
+      {error && <p style={{ color: "#ff6b6b", marginTop: 12 }}>{error}</p>}
 
-      <ul style={{ marginTop: 16 }}>
-        {data.map((persona) => (
-          <li key={persona.id} style={{ marginBottom: 12 }}>
-            <strong>{persona.Nombre}</strong> <br />
-            Edad: {persona.Edad} <br />
-            Sexo: {persona.Sexo} <br />
-            Estudios: {persona.Estudios}
-          </li>
-        ))}
-      </ul>
+      {data.length > 0 && (
+        <div className="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Altura</th>
+                <th>Sexo</th>
+                <th>Estudios</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {data.map((p) => (
+                <tr key={p.id}>
+                  <td>{p.id}</td>
+                  <td>{p.Nombre}</td>
+                  <td>{p.Edad}</td>
+                  <td>{p.Altura}</td>
+                  <td>{p.Sexo}</td>
+                  <td>{p.Estudios}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

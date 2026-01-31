@@ -8,7 +8,7 @@ type Empleado = {
   especialidad: string | null;
   telefono: string;
   email: string;
-  fecha_contratacion: string; // ISO
+  fecha_contratacion: string;
   salario: string;
   activo: boolean;
 };
@@ -47,67 +47,52 @@ export default function EmpleadosPage() {
   };
 
   return (
-    <div>
-      <h1 style={{ marginTop: 0 }}>Empleados</h1>
+    <div className="card page">
+      <h1 className="h1">Empleados</h1>
+      <p className="p">Consulta y visualiza los registros desde la API.</p>
 
-      <button onClick={consultar} style={{ padding: "8px 12px", borderRadius: 10 }}>
-        Consultar API
-      </button>
+      <div className="actions">
+        <button className="btn btnPrimary" onClick={consultar}>
+          Consultar API
+        </button>
+      </div>
 
-      {loading && <p>Cargando...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {loading && <p className="p" style={{ marginTop: 12 }}>Cargando...</p>}
+      {error && <p className="error">{error}</p>}
 
       {data.length > 0 && (
-        <div style={{ overflowX: "auto", marginTop: 16 }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", background: "white" }}>
+        <div className="tableWrap" style={{ marginTop: 14 }}>
+          <table>
             <thead>
               <tr>
-                {[
-                  "ID",
-                  "Nombre",
-                  "Puesto",
-                  "Especialidad",
-                  "Teléfono",
-                  "Email",
-                  "Fecha contratación",
-                  "Salario",
-                  "Activo",
-                ].map((h) => (
-                  <th
-                    key={h}
-                    style={{
-                      textAlign: "left",
-                      padding: 10,
-                      borderBottom: "1px solid #eee",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {h}
-                  </th>
-                ))}
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Puesto</th>
+                <th>Especialidad</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Fecha</th>
+                <th>Salario</th>
+                <th>Activo</th>
               </tr>
             </thead>
+
             <tbody>
               {data.map((e) => (
                 <tr key={e.id_empleado}>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>
-                    {e.id_empleado}
-                  </td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>
-                    {e.nombre} {e.apellido}
-                  </td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>{e.puesto}</td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>
-                    {e.especialidad ?? "—"}
-                  </td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>{e.telefono}</td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>{e.email}</td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>
-                    {formatearFecha(e.fecha_contratacion)}
-                  </td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>{e.salario}</td>
-                  <td style={{ padding: 10, borderBottom: "1px solid #f2f2f2" }}>
-                    {e.activo ? "Sí" : "No"}
+                  <td>{e.id_empleado}</td>
+                  <td>{e.nombre} {e.apellido}</td>
+                  <td>{e.puesto}</td>
+                  <td>{e.especialidad ?? "—"}</td>
+                  <td>{e.telefono}</td>
+                  <td>{e.email}</td>
+                  <td>{formatearFecha(e.fecha_contratacion)}</td>
+                  <td>{e.salario}</td>
+                  <td>
+                    <span className={`chip ${e.activo ? "chipGood" : "chipBad"}`}>
+                      <span className="dot" />
+                      {e.activo ? "Sí" : "No"}
+                    </span>
                   </td>
                 </tr>
               ))}
