@@ -12,50 +12,40 @@ type Servicio = {
 export default function ServiciosPage() {
   const [data, setData] = useState<Servicio[]>([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = "Servicios | Veterinaria";
+
+    const consultar = async () => {
+      try {
+        const res = await fetch(
+          "https://veterinaria-steel.vercel.app/api/infoservicios"
+        );
+        if (!res.ok) throw new Error("Error al consultar la API");
+
+        const json: Servicio[] = await res.json();
+        setData(json);
+      } catch (e) {
+        setError("No se pudo obtener la información de servicios");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    consultar();
   }, []);
-
-  const consultar = async () => {
-    try {
-      setLoading(true);
-      setError("");
-
-      const res = await fetch("https://veterinaria-steel.vercel.app/api/infoservicios");
-      if (!res.ok) throw new Error("Error al consultar la API de servicios");
-
-      const json: Servicio[] = await res.json();
-      setData(json);
-    } catch (e) {
-      setError("No se pudo obtener la información de servicios");
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="card page">
       <h1 className="h1">Servicios</h1>
-      <p className="p">Consulta y visualiza los registros desde la API.</p>
+      <p className="p">Servicios disponibles en la veterinaria.</p>
 
-      <div className="actions">
-        <button className="btn btnPrimary" onClick={consultar}>
-          Consultar API
-        </button>
-      </div>
-
-      {loading && (
-        <p className="p" style={{ marginTop: 12 }}>
-          Cargando...
-        </p>
-      )}
+      {loading && <p className="p">Cargando información...</p>}
       {error && <p className="error">{error}</p>}
 
       {data.length > 0 && (
-        <div className="tableWrap" style={{ marginTop: 14 }}>
+        <div className="tableWrap">
           <table>
             <thead>
               <tr>
@@ -67,7 +57,6 @@ export default function ServiciosPage() {
                 <th>Número de pacientes</th>
               </tr>
             </thead>
-
             <tbody>
               {data.map((s) => (
                 <tr key={s.id_servicios}>

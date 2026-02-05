@@ -12,46 +12,53 @@ type Personal = {
 export default function InfoPersonalPage() {
   const [data, setData] = useState<Personal[]>([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = "Info Personal | Veterinaria";
+
+    const consultar = async () => {
+      try {
+        setError("");
+        setLoading(true);
+
+        const res = await fetch("https://veterinaria-steel.vercel.app/api/infoPersonal");
+        if (!res.ok) throw new Error("Error al consultar la API de infoPersonal");
+
+        const json: Personal[] = await res.json();
+        setData(json);
+      } catch (e) {
+        setError("No se pudo obtener la información del personal");
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    consultar();
   }, []);
 
-  const obtenerInfo = async () => {
-    try {
-      setLoading(true);
-      setError("");
-
-      const res = await fetch("https://veterinaria-steel.vercel.app/api/infoPersonal");
-      if (!res.ok) throw new Error("Error al consultar la API");
-
-      const json: Personal[] = await res.json();
-      setData(json);
-    } catch (err) {
-      setError("No se pudo obtener la información");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className="card" style={{ padding: 18 }}>
+    <div className="card page">
       <h1 className="h1">Información del Personal</h1>
       <p className="p">Consulta y visualiza los registros desde la API.</p>
 
-      <div style={{ marginTop: 12 }}>
-        <button className="btn btnPrimary" onClick={obtenerInfo}>
-          Consultar API
-        </button>
-      </div>
+      {loading && (
+        <p className="p" style={{ marginTop: 12 }}>
+          Cargando información...
+        </p>
+      )}
 
-      {loading && <p style={{ marginTop: 12 }}>Cargando...</p>}
-      {error && <p style={{ color: "#ff6b6b", marginTop: 12 }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
+
+      {!loading && !error && data.length === 0 && (
+        <p className="p" style={{ marginTop: 12 }}>
+          No hay registros para mostrar.
+        </p>
+      )}
 
       {data.length > 0 && (
-        <div className="tableWrap">
+        <div className="tableWrap" style={{ marginTop: 14 }}>
           <table>
             <thead>
               <tr>
