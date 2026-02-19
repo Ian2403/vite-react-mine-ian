@@ -26,7 +26,7 @@ export default function EmpleadosPage() {
         setError("");
         setLoading(true);
 
-        const res = await fetch("https://veterinaria-steel.vercel.app/api/empleadosinfo");
+        const res = await fetch("https://veterinaria-mine.vercel.app/api/empleados");
         if (!res.ok) throw new Error("Error al consultar la API de empleados");
 
         const json: Empleado[] = await res.json();

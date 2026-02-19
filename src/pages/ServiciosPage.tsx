@@ -20,7 +20,7 @@ export default function ServiciosPage() {
     const consultar = async () => {
       try {
         const res = await fetch(
-          "https://veterinaria-steel.vercel.app/api/infoservicios"
+          "https://veterinaria-mine.vercel.app/api/servicios"
         );
         if (!res.ok) throw new Error("Error al consultar la API");
 
