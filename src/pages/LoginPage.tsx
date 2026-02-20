@@ -58,8 +58,8 @@ const FormularioUsuario: React.FC = () => {
 
   return (
     <div style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-      <form onSubmit={handleSubmit}>
-        <h2>Iniciar sesión</h2>
+      <form className="formulario" onSubmit={handleSubmit}>
+        <h1>Iniciar sesión</h1>
 
         <label htmlFor="usuario">
           Iniciar con usuario o correo electrónico:
@@ -99,7 +99,7 @@ const FormularioUsuario: React.FC = () => {
         <br />
         <br />
 
-        <button type="submit">Iniciar</button>
+        <button className="button">Iniciar</button>
       </form>
     </div>
   );

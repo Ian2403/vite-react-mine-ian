@@ -8,8 +8,21 @@ export default function HomePage() {
 
   return (
     <div className="card page">
-      <h1 className="h1">Inicio</h1>
-      <p className="p">Selecciona un módulo para consultar su API.</p>
+      <div className="container" style={{ display: "flex", alignItems: "center", gap: "12px", flexDirection: "row", alignContent: "center", flexWrap: "nowrap", justifyContent: "space-between" }}>
+      <div className="description ">
+
+        <h1 className="h1">Inicio</h1>
+        <p className="p">Selecciona un módulo para consultar su API.</p>
+      </div>
+      <div className="add dates" >
+        <a className="btnadd" href="/informacion-nueva" data-discover="true">
+          <span style={{ marginRight: "8px" }}>+</span>Agregar
+        </a>
+      </div>
+      </div>
+
+      
+
 
       <div className="grid">
         <div className="card inner">

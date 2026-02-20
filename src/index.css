@@ -80,8 +80,28 @@ a:hover{ text-decoration: underline; }
   padding: 10px 14px;
   border-radius: 12px;
   cursor: pointer;
+
 }
-.btn:hover{ background: rgba(255,255,255,.10); }
+/* botón para agregar*/
+.btnadd{ 
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btnadd:hover{ 
+  font-weight: bold;
+  background-color: #fcfcfc;
+  color: #1d3557;
+  padding: 14px 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
 
 .btnPrimary{
   background: rgba(102,163,255,.20);
@@ -158,3 +178,42 @@ tbody tr:hover{
 
 .chipGood .dot{ background: var(--good); }
 .chipBad .dot{ background: var(--bad); }
+
+/* estilo del formulario */
+.button{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.button:hover{ 
+  font-weight: bold;
+  background-color: #fcfcfc;
+  color: #1d3557;
+  padding: 14px 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.formulario{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+.label{
+    display: block;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
