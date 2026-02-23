@@ -11,7 +11,6 @@ import InformacionNuevaPage from "./pages/InformacionNuevaPage.tsx";
 import AddAnimalesPage from "./layouts/add/AddAnimalesPage.tsx";
 import AddInfoPersonalPage from "./layouts/add/AddInfoPersonalPage.tsx";
 import AddServiciosPage from "./layouts/add/AddServiciosPage.tsx";
-import AddEmpleadosPge from "./layouts/add/AddEmpleadosPage.tsx";
 import AddEmpleadosPage from "./layouts/add/AddEmpleadosPage.tsx";
 
 // ==========================================
