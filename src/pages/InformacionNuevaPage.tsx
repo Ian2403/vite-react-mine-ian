@@ -1,67 +1,110 @@
-import React, { useState } from 'react';
+import { useState, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
-type FormState = {
-  Nombre: string;
-  Edad: number | '';
-  Altura: number | '';
-  Sexo: string;
-  Estudios: string;
-};
+interface FormData {
+  tabla: string;
+}
 
-export default function AddInfoButton({ endpoint = '/infoPersonal' }: { endpoint?: string }) {
-  const [show, setShow] = useState(false);
-  const [form, setForm] = useState<FormState>({ Nombre: '', Edad: '', Altura: '', Sexo: '', Estudios: '' });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export default function FormularioUsuario() {
+  const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const [formData, setFormData] = useState<FormData>({
+    tabla: "",
+  });
+
+  const [mensaje, setMensaje] = useState<string>("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setForm(prev => ({
-      ...prev,
-      [name]: name === 'Edad' || name === 'Altura' ? (value === '' ? '' : Number(value)) : value
-    }));
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
-      });
-      if (!res.ok) throw new Error(await res.text());
-      await res.json();
-      setShow(false);
-      setForm({ Nombre: '', Edad: '', Altura: '', Sexo: '', Estudios: '' });
-    } catch (err: any) {
-      setError(err.message || 'Error al crear registro');
-    } finally {
-      setLoading(false);
+
+    if (!formData.tabla) {
+      setMensaje("Selecciona una tabla para continuar");
+      return;
+    }
+
+      switch (formData.tabla) {
+        case "info-personal":
+          navigate("/agregar-info-personal");
+          break;  
+
+
+        case "animales":
+          navigate("/agregar-animales");
+          break;
+          
+          
+        case "empleados":
+          navigate("/agregar-empleados");
+          break;
+
+
+        case "servicios":
+          navigate("/agregar-servicios");
+          break;
+
+        default:
+          navigate("/");
     }
   };
 
   return (
-    <div>
-      <button onClick={() => setShow(s => !s)}>{show ? 'Cerrar' : 'Agregar registro'}</button>
+    <div style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+      <form className="formulario" onSubmit={handleSubmit}>
+        <h2 style={styles.title}>
+          ¿Dónde deseas agregar la información?
+        </h2>
 
-      {show && (
-        <form onSubmit={handleSubmit} style={{ marginTop: 8 }}>
-          <input name="Nombre" value={form.Nombre} onChange={handleChange} placeholder="Nombre" required />
-          <input name="Edad" type="number" value={form.Edad as any} onChange={handleChange} placeholder="Edad" />
-          <input name="Altura" type="number" step="0.01" value={form.Altura as any} onChange={handleChange} placeholder="Altura" />
-          <select name="Sexo" value={form.Sexo} onChange={handleChange} required>
-            <option value="">Sexo</option>
-            <option value="M">M</option>
-            <option value="F">F</option>
-          </select>
-          <input name="Estudios" value={form.Estudios} onChange={handleChange} placeholder="Estudios" />
-          <button type="submit" disabled={loading}>{loading ? 'Guardando...' : 'Guardar'}</button>
-          {error && <div style={{ color: 'red' }}>{error}</div>}
-        </form>
-      )}
+        <p className="p">Selecciona una tabla</p>
+
+        <select
+          name="tabla"
+          value={formData.tabla}
+          onChange={handleChange}
+        >
+          <option value="">Elegir una tabla</option>
+          <option value="info-personal">Info Personal</option>
+          <option value="animales">Animales</option>
+          <option value="empleados">Empleados</option>
+          <option value="servicios">Servicios</option>
+        </select>
+
+        <div className="grid">
+          <button type="submit" className="button">
+            Siguiente
+          </button>
+
+          <button
+            type="button"
+            className="button-cancel"
+            onClick={() => navigate("/")}
+          >
+            Cancelar
+          </button>
+
+          {mensaje && <p style={styles.message}>{mensaje}</p>}
+        </div>
+      </form>
     </div>
   );
 }
+
+const styles: { [key: string]: React.CSSProperties } = {
+  title: {
+    textAlign: "center",
+    marginBottom: "10px",
+  },
+  message: {
+    textAlign: "center",
+    fontSize: "14px",
+    color: "red",
+  },
+};
