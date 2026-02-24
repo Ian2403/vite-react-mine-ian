@@ -33,7 +33,6 @@ export default function NuevoInfoPersonalPage() {
 console.log("Formulario enviado con datos:", formData);
     if (
       !formData.Nombre ||
-      !formData.Apellido ||
       !formData.Edad ||
       !formData.Altura ||
       !formData.Sexo ||
