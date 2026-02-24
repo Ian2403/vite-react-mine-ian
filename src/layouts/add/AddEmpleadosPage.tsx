@@ -90,7 +90,7 @@ console.log("Formulario enviado con datos:", formData);
           className="input"
           type="text"
           name="nombre"
-          placeholder="Nombre"
+          placeholder="nombre"
           onChange={handleChange}
         />
 
@@ -98,7 +98,7 @@ console.log("Formulario enviado con datos:", formData);
           className="input"
           type="text"
           name="apellido"
-          placeholder="Apellido"
+          placeholder="apellido"
           onChange={handleChange}
         />
 
@@ -106,7 +106,7 @@ console.log("Formulario enviado con datos:", formData);
           className="input"
           type="text"
           name="puesto"
-          placeholder="Puesto"
+          placeholder="puesto"
           onChange={handleChange}
         />
 
@@ -114,7 +114,7 @@ console.log("Formulario enviado con datos:", formData);
             className="input"
             type="text"
             name="especialidad"
-            placeholder="Especialidad"
+            placeholder="especialidad"
             onChange={handleChange}
         />
 
@@ -122,15 +122,15 @@ console.log("Formulario enviado con datos:", formData);
           className="input"
           type="text"
           name="telefono"
-          placeholder="Teléfono"
+          placeholder="telefono"
           onChange={handleChange}
         />
 
         <input
           className="input"
           type="email"
-          name="correo"
-          placeholder="Correo"
+          name="email"
+          placeholder="email"
           onChange={handleChange}
         />
 
@@ -148,7 +148,7 @@ console.log("Formulario enviado con datos:", formData);
           className="input"
           type="number"
           name="salario"
-          placeholder="Salario"
+          placeholder="salario"
           onChange={handleChange}
         />
 

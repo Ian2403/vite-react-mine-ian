@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function NuevoServicioPage() {
   const navigate = useNavigate();
 
+  console.log("Renderizando NuevoServicioPage");
   const [formData, setFormData] = useState({
     Tipos_servicios: "",
     Disponibilidad: "",
