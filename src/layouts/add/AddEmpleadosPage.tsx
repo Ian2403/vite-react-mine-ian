@@ -36,6 +36,7 @@ export default function NuevoEmpleadoPage() {
   ) => {
     e.preventDefault();
 
+console.log("Formulario enviado con datos:", formData);
     if (
       !formData.nombre ||
       !formData.apellido ||
@@ -151,7 +152,6 @@ export default function NuevoEmpleadoPage() {
           onChange={handleChange}
         />
 
-        {/* Activo */}
 
         <p className="p">¿Empleado activo?</p>
 

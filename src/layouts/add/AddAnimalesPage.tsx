@@ -30,8 +30,9 @@ export default function NuevoAnimalPage() {
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    e.preventDefault();
 
+    e.preventDefault();
+console.log("Formulario enviado con datos:", formData);
     if (
       !formData.Animal ||
       !formData.Raza ||

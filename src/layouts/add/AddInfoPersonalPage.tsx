@@ -30,7 +30,7 @@ export default function NuevoInfoPersonalPage() {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-
+console.log("Formulario enviado con datos:", formData);
     if (
       !formData.Nombre ||
       !formData.Apellido ||
@@ -79,38 +79,63 @@ export default function NuevoInfoPersonalPage() {
         <input
           className="input"
           type="text"
-          name="nombre"
+          name="Nombre"
           placeholder="Nombre"
-          onChange={handleChange}
-        />
-
-        <input
-          className="input"
-          type="number"
-          name="edad"
-          placeholder="Edad"
-          onChange={handleChange}
-        />
-
-        <input
-          className="input"
-          type="number"
-          name="altura"
-          placeholder="Altura (cm)"
-          onChange={handleChange}
-        />
-
-        <input
-          className="input"
-          type="text"
-          name="Sexo"
-          placeholder="Sexo"
           onChange={handleChange}
         />
 
         <select
           className="input"
-          name="sexo"
+          name="Edad"
+          onChange={handleChange}
+        >
+          <option value="">Seleccionar edad</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>  
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="34">34</option>
+          <option value="35">35</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+          <option value="45">45</option>
+          <option value="46">46</option>
+          <option value="47">47</option>
+          <option value="48">48</option>
+          <option value="49">49</option>
+          <option value="50">50</option>  
+        </select>
+
+        <input
+          className="input"
+          type="number"
+          name="Altura"
+          placeholder="Altura (cm)"
+          onChange={handleChange}
+        />
+
+        <select
+          className="input"
+          name="Sexo"
           onChange={handleChange}
         >
           <option value="">Seleccionar sexo</option>
@@ -125,7 +150,7 @@ export default function NuevoInfoPersonalPage() {
         <input
           className="input"
           type="text"
-          name="estudios"
+          name="Estudios"
           placeholder="Estudios"
           onChange={handleChange}
         />

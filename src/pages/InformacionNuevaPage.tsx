@@ -15,17 +15,17 @@ export default function FormularioUsuario() {
   const [mensaje, setMensaje] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
 
     setFormData({
       ...formData,
-      [name]: value,
+      tabla: value,
     });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log("Formulario enviado con datos:", formData);
     if (!formData.tabla) {
       setMensaje("Selecciona una tabla para continuar");
       return;
