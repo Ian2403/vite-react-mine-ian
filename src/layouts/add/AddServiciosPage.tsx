@@ -63,7 +63,7 @@ export default function NuevoServicioPage() {
         <h1>Servicio</h1>
         <p className="p">Completa los siguientes datos requeridos </p>
 
-
+    <div className="grid">
         <input
           className="input"
           type="text"
@@ -103,14 +103,14 @@ export default function NuevoServicioPage() {
           placeholder="Número de pacientes"
           onChange={handleChange}
         />
+    </div>
 
-
+        {mensaje && <p style={{ color: "red" }}>{mensaje}</p>}
 
         <button className="button" type="submit">
           Guardar
         </button>
 
-        {mensaje && <p style={{ color: "red" }}>{mensaje}</p>}
       </form>
     </div>
   );

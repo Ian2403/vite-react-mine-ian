@@ -83,6 +83,7 @@ export default function NuevoEmpleadoPage() {
         <h1>Empleado</h1>
         <p className="p">Completa los siguientes datos requeridos </p>
 
+    <div className="grid">
 
         <input
           className="input"
@@ -164,11 +165,14 @@ export default function NuevoEmpleadoPage() {
           <option value="false">No</option>
         </select>
 
+        {mensaje && <p style={{ color: "red" }}>{mensaje}</p>}
+
+    </div>
         <button className="button" type="submit">
           Agregar
         </button>
 
-        {mensaje && <p style={{ color: "red" }}>{mensaje}</p>}
+        
       </form>
     </div>
   );

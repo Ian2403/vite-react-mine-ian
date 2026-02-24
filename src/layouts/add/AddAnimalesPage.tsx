@@ -71,18 +71,19 @@ export default function NuevoAnimalPage() {
   };
 
   return (
-    <div className="container">
-        <h1 className="h1">Animal</h1>
-        <p className="p">Completa los siguientes datos requeridos </p>
+    <form className="formulario" onSubmit={handleSubmit}>
+      <div className="container">
+         <h1 className="h1">Animal</h1>
+          <p className="p">Completa los siguientes datos requeridos </p>
 
-        
-        <input
-          className="input"
-          type="text"
-          name="Nombre"
-          placeholder="Nombre del animal"
-          onChange={handleChange}
-        />
+      <div className="grid">       
+         <input
+            className="input"
+            type="text"
+            name="Nombre"
+            placeholder="Nombre del animal"
+            onChange={handleChange}
+          />
 
         <input
           className="input"
@@ -149,14 +150,13 @@ export default function NuevoAnimalPage() {
             </label>
           </div>
         </div>
+      </div>  
 
         {mensaje && <p style={{ color: "red" }}>{mensaje}</p>}
         <button className="button" type="submit">
           Agregar 
         </button>
-
-
-
     </div>
+    </form>
   );
 }

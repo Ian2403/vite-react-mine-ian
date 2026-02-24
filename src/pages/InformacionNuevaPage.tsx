@@ -62,11 +62,12 @@ export default function FormularioUsuario() {
         <h2 style={styles.title}>
           ¿Dónde deseas agregar la información?
         </h2>
-
+    
         <p className="p">Selecciona una tabla</p>
 
+      <div className="grid">
         <select
-          name="tabla"
+          className="input"
           value={formData.tabla}
           onChange={handleChange}
         >
@@ -76,6 +77,7 @@ export default function FormularioUsuario() {
           <option value="empleados">Empleados</option>
           <option value="servicios">Servicios</option>
         </select>
+      </div>
 
         <div className="grid">
           <button type="submit" className="button">

@@ -75,6 +75,7 @@ export default function NuevoInfoPersonalPage() {
         <h1>Información Personal</h1>
         <p className="p">Completa los siguientes datos requeridos </p>
 
+      <div className="grid">
         <input
           className="input"
           type="text"
@@ -128,12 +129,16 @@ export default function NuevoInfoPersonalPage() {
           placeholder="Estudios"
           onChange={handleChange}
         />
+      </div>  
+      
+        {mensaje && <p style={{ color: "red" }}>{mensaje}</p>}
+  
 
         <button className="button" type="submit">
           Agreagar
         </button>
 
-        {mensaje && <p style={{ color: "red" }}>{mensaje}</p>}
+        
       </form>
     </div>
   );
