@@ -44,7 +44,7 @@ console.log("Formulario enviado con datos:", formData);
     }
 
     try {
-      const response = await fetch("/api/info-personal", {
+      const response = await fetch("https://veterinaria-mine.vercel.app/api/infoPersonal", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

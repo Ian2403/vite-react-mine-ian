@@ -37,7 +37,7 @@ export default function NuevoServicioPage() {
  
 
     try {
-      const response = await fetch("/api/servicios", {
+      const response = await fetch("https://veterinaria-mine.vercel.app/api/servicios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
