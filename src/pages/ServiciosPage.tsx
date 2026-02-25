@@ -20,14 +20,14 @@ export default function ServiciosPage() {
     const consultar = async () => {
       try {
         const res = await fetch(
-          "https://veterinaria-mine.vercel.app/api/servicios"
+          "https://veterinaria-mine.vercel.app/api/infoservicios"
         );
         if (!res.ok) throw new Error("Error al consultar la API");
 
         const json: Servicio[] = await res.json();
         setData(json);
       } catch (e) {
-        setError("No se pudo obtener la información de servicios");
+        setError("No se pudo obtener la información de infoservicios");
       } finally {
         setLoading(false);
       }
@@ -40,6 +40,11 @@ export default function ServiciosPage() {
     <div className="card page">
       <h1 className="h1">Servicios</h1>
       <p className="p">Servicios disponibles en la veterinaria.</p>
+      <div className="add dates" >
+        <a className="btnadd" href="/agregar-servicios" data-discover="true">
+          <span style={{ marginRight: "8px" }}>+</span>Agregar
+        </a>
+      </div>
 
       {loading && <p className="p">Cargando información...</p>}
       {error && <p className="error">{error}</p>}

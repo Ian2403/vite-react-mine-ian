@@ -26,13 +26,13 @@ export default function EmpleadosPage() {
         setError("");
         setLoading(true);
 
-        const res = await fetch("https://veterinaria-mine.vercel.app/api/empleados");
-        if (!res.ok) throw new Error("Error al consultar la API de empleados");
+        const res = await fetch("https://veterinaria-mine.vercel.app/api/empleadosinfo");
+        if (!res.ok) throw new Error("Error al consultar la API de empleadosinfo");
 
         const json: Empleado[] = await res.json();
         setData(json);
       } catch (e) {
-        setError("No se pudo obtener la información de empleados");
+        setError("No se pudo obtener la información de empleadosinfo");
         console.error(e);
       } finally {
         setLoading(false);
@@ -52,6 +52,11 @@ export default function EmpleadosPage() {
     <div className="card page">
       <h1 className="h1">Empleados</h1>
       <p className="p">Consulta y visualiza los registros desde la API.</p>
+      <div className="add dates" >
+        <a className="btnadd" href="/agregar-empleados" data-discover="true">
+          <span style={{ marginRight: "8px" }}>+</span>Agregar
+        </a>
+      </div>
 
       {loading && (
         <p className="p" style={{ marginTop: 12 }}>
