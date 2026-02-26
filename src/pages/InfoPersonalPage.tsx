@@ -40,12 +40,16 @@ export default function InfoPersonalPage() {
 
   return (
     <div className="card page">
-      <h1 className="h1">Información del Personal</h1>
-      <p className="p">Consulta y visualiza los registros desde la API.</p>
-      <div className="add dates" >
-        <a className="btnadd" href="/agregar-info-personal" data-discover="true">
-          <span style={{ marginRight: "8px" }}>+</span>Agregar
-        </a>
+      <div className="container" style={{ display: "flex", alignItems: "center", gap: "12px", flexDirection: "row", alignContent: "center", flexWrap: "nowrap", justifyContent: "space-between" }}>
+        <div className="description ">
+        <h1 className="h1">Información del Personal</h1>
+        <p className="p">Consulta y visualiza los registros desde la API.</p>
+        </div>
+        <div className="add dates" >
+          <a className="btnadd" href="/agregar-info-personal" data-discover="true">
+            <span style={{ marginRight: "8px" }}>+</span>Agregar
+          </a>
+        </div>
       </div>
 
       {loading && (

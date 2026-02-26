@@ -42,15 +42,18 @@ export default function AnimalesPage() {
 
   return (
     <div className="card page">
-    <div className="container" style={{ display: "flex", alignItems: "center", gap: "12px", flexDirection: "row", alignContent: "center", flexWrap: "nowrap", justifyContent: "space-between" }}></div>  
-      <h1 className="h1">Animales</h1>
-      <p className="p">Consulta y visualiza los registros desde la API.</p>
-         <div className="add dates" >
-        <a className="btnadd" href="/agregar-animales" data-discover="true">
-          <span style={{ marginRight: "8px" }}>+</span>Agregar
-        </a>
-      </div>
-
+      <div className="container" style={{ display: "flex", alignItems: "center", gap: "12px", flexDirection: "row", alignContent: "center", flexWrap: "nowrap", justifyContent: "space-between" }}>
+       <div className="description ">
+        <h1 className="h1">Animales</h1>
+        <p className="p">Consulta y visualiza los registros desde la API.</p>
+        </div>
+          <div className="add dates" >
+       </div>     
+            <a className="btnadd" href="/agregar-animales" data-discover="true">
+              <span style={{ marginRight: "8px" }}>+</span>Agregar
+            </a>
+      </div>  
+      
       {loading && (
         <p className="p" style={{ marginTop: 12 }}>
           Cargando información...
@@ -65,7 +68,8 @@ export default function AnimalesPage() {
         </p>
       )}
 
-
+    
+ 
       {data.length > 0 && (
         <div className="tableWrap" style={{ marginTop: 14 }}>
           <table>

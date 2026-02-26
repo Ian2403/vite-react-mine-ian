@@ -38,13 +38,17 @@ export default function ServiciosPage() {
 
   return (
     <div className="card page">
-      <h1 className="h1">Servicios</h1>
-      <p className="p">Servicios disponibles en la veterinaria.</p>
-      <div className="add dates" >
-        <a className="btnadd" href="/agregar-servicios" data-discover="true">
-          <span style={{ marginRight: "8px" }}>+</span>Agregar
-        </a>
-      </div>
+      <div className="container" style={{ display: "flex", alignItems: "center", gap: "12px", flexDirection: "row", alignContent: "center", flexWrap: "nowrap", justifyContent: "space-between" }}>
+        <div className="description ">
+          <h1 className="h1">Servicios</h1>
+          <p className="p">Servicios disponibles en la veterinaria.</p>
+        </div>
+          <div className="add dates" >
+            <a className="btnadd" href="/agregar-servicios" data-discover="true">
+              <span style={{ marginRight: "8px" }}>+</span>Agregar
+            </a>
+        </div>    
+    </div>  
 
       {loading && <p className="p">Cargando información...</p>}
       {error && <p className="error">{error}</p>}
