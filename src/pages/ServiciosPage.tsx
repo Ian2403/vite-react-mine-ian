@@ -13,6 +13,7 @@ export default function ServiciosPage() {
   const [data, setData] = useState<Servicio[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Servicios | Veterinaria";
@@ -75,6 +76,26 @@ export default function ServiciosPage() {
                   <td>{s.Horario}</td>
                   <td>{s.Encargado}</td>
                   <td>{s.Numero_pacientes}</td>
+                  <td style={{ position: "relative" }}>
+                    <button
+                      className="menu-btn"
+                      onClick={() =>
+                        setOpenMenuId(openMenuId === s.id_servicios ? null : s.id_servicios)
+                      }
+                    >
+                      <span className="dots">⋮</span>
+                    </button>
+                    {openMenuId === s.id_servicios && (
+                      <div className="menu">
+                        <button onClick={() => console.log("Editar", s.id_servicios)}>
+                          Editar
+                        </button>
+                        <button onClick={() => console.log("Eliminar", s.id_servicios)}>
+                          Eliminar
+                        </button>
+                      </div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

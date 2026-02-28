@@ -15,6 +15,7 @@ export default function AnimalesPage() {
   const [data, setData] = useState<Animal[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Animales | Veterinaria";
@@ -102,6 +103,22 @@ export default function AnimalesPage() {
                     </span>
                   </td>
                   <td>{a.Dieta}</td>
+                  <td style={{ position: "relative" }}>
+                    <button
+                      className="menu-btn"
+                      onClick={() =>
+                        setOpenMenuId(openMenuId === a.id ? null : a.id)
+                      }
+                    >
+                      <span className="dots">⋮</span>
+                    </button>
+                    {openMenuId === a.id && (
+                      <div className="menu">
+                        <button /* … */>Editar</button>
+                        <button /* … */>Eliminar</button>
+                      </div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

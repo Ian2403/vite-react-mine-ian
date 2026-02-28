@@ -13,6 +13,7 @@ export default function InfoPersonalPage() {
   const [data, setData] = useState<Personal[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Info Personal | Veterinaria";
@@ -49,6 +50,7 @@ export default function InfoPersonalPage() {
           <a className="btnadd" href="/agregar-info-personal" data-discover="true">
             <span style={{ marginRight: "8px" }}>+</span>Agregar
           </a>
+
         </div>
       </div>
 
@@ -89,6 +91,22 @@ export default function InfoPersonalPage() {
                   <td>{p.Altura}</td>
                   <td>{p.Sexo}</td>
                   <td>{p.Estudios}</td>
+                  <td style={{ position: "relative" }}>
+                    <button
+                      className="menu-btn"
+                      onClick={() =>
+                        setOpenMenuId(openMenuId === p.id ? null : p.id)
+                      }
+                    >
+                      <span className="dots">⋮</span>
+                    </button>
+                    {openMenuId === p.id && (
+                      <div className="menu">
+                        <button /* … */>Editar</button>
+                        <button /* … */>Eliminar</button>
+                      </div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

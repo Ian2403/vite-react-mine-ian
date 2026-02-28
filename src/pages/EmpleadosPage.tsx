@@ -17,6 +17,7 @@ export default function EmpleadosPage() {
   const [data, setData] = useState<Empleado[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 
   useEffect(() => {
     document.title = "Empleados | Veterinaria";
@@ -90,6 +91,7 @@ export default function EmpleadosPage() {
                 <th>Fecha</th>
                 <th>Salario</th>
                 <th>Activo</th>
+                <th>Acciones</th>
               </tr>
             </thead>
 
@@ -111,6 +113,22 @@ export default function EmpleadosPage() {
                       <span className="dot" />
                       {e.activo ? "Sí" : "No"}
                     </span>
+                  </td>
+                  <td style={{ position: "relative" }}>
+                    <button
+                      className="menu-btn"
+                      onClick={() =>
+                        setOpenMenuId(openMenuId === e.id_empleado ? null : e.id_empleado)
+                      }
+                    >
+                      <span className="dots">⋮</span>
+                    </button>
+                    {openMenuId === e.id_empleado && (
+                      <div className="menu">
+                        <button /* … */>Editar</button>
+                        <button /* … */>Eliminar</button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
