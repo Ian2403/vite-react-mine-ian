@@ -33,7 +33,7 @@ export default function EditInfoPersonalPage() {
         const data = await res.json();
         setForm(data);
       } catch (error) {
-        console.error("Error al obtener información:", error);
+        console.error("Hubo un error al obtener información:", error);
       }
     };
 

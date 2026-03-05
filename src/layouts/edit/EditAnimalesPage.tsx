@@ -27,7 +27,6 @@ const [form, setForm] = useState<Animal>({
   Dieta: "",
 });
 
-const [mensaje, setMensaje] = useState("");
 
   useEffect(() => {
     const obtenerAnimal = async () => {

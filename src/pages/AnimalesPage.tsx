@@ -18,6 +18,8 @@ export default function AnimalesPage() {
   const [loading, setLoading] = useState(true);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = "Animales | Veterinaria";
 
@@ -42,35 +44,62 @@ export default function AnimalesPage() {
     consultar();
   }, []);
 
-    const eliminarRegistro = async (id: string) => {
-  try {
-    await fetch(`https://veterinaria-mine.vercel.app/api/animales/${id}`, {
-      method: "DELETE",
-    });
+  // cerrar menú al hacer click fuera
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setOpenMenuId(null);
+    };
 
+    document.addEventListener("click", handleClickOutside);
 
-    setData(data.filter((p) => p.id !== id));
-  } catch (error) {
-    console.error("Error al eliminar:", error);
-  }
-};
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-const navigate = useNavigate();
+  // función toggle
+  const toggleMenu = (id: string) => {
+    if (openMenuId === id) {
+      setOpenMenuId(null);
+    } else {
+      setOpenMenuId(id);
+    }
+  };
+
+  const eliminarRegistro = async (id: string) => {
+    try {
+      await fetch(`https://veterinaria-mine.vercel.app/api/animales/${id}`, {
+        method: "DELETE",
+      });
+
+      setData(data.filter((p) => p.id !== id));
+      setOpenMenuId(null);
+    } catch (error) {
+      console.error("Error al eliminar:", error);
+    }
+  };
 
   return (
     <div className="card page">
-      <div className="container" style={{ display: "flex", alignItems: "center", gap: "12px", flexDirection: "row", alignContent: "center", flexWrap: "nowrap", justifyContent: "space-between" }}>
-       <div className="description ">
-        <h1 className="h1">Animales</h1>
-        <p className="p">Consulta y visualiza los registros desde la API.</p>
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          justifyContent: "space-between",
+        }}
+      >
+        <div className="description">
+          <h1 className="h1">Animales</h1>
+          <p className="p">Consulta y visualiza los registros desde la API.</p>
         </div>
-          <div className="add dates" >
-       </div>     
-            <a className="btnadd" href="/agregar-animales" data-discover="true">
-              <span style={{ marginRight: "8px" }}>+</span>Agregar
-            </a>
-      </div>  
-      
+
+        <a className="btnadd" href="/agregar-animales">
+          <span style={{ marginRight: "8px" }}>+</span>Agregar
+        </a>
+      </div>
+
       {loading && (
         <p className="p" style={{ marginTop: 12 }}>
           Cargando información...
@@ -85,8 +114,6 @@ const navigate = useNavigate();
         </p>
       )}
 
-    
- 
       {data.length > 0 && (
         <div className="tableWrap" style={{ marginTop: 14 }}>
           <table>
@@ -100,6 +127,7 @@ const navigate = useNavigate();
                 <th>Síntomas</th>
                 <th>Vacunación</th>
                 <th>Dieta</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -112,28 +140,49 @@ const navigate = useNavigate();
                   <td>{a.Nombre}</td>
                   <td>{a.Años}</td>
                   <td>{a.Sintomas}</td>
+
                   <td>
-                    <span className={`chip ${a["Vacunación"] ? "chipGood" : "chipBad"}`}>
+                    <span
+                      className={`chip ${
+                        a["Vacunación"] ? "chipGood" : "chipBad"
+                      }`}
+                    >
                       <span className="dot" />
                       {a["Vacunación"] ? "Sí" : "No"}
                     </span>
                   </td>
+
                   <td>{a.Dieta}</td>
+
                   <td style={{ position: "relative" }}>
                     <button
                       className="menu-btn"
-                      onClick={() =>
-                        setOpenMenuId(openMenuId === a.id ? null : a.id)
-                      }
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleMenu(a.id);
+                      }}
                     >
                       <span className="dots">⋮</span>
                     </button>
+
                     {openMenuId === a.id && (
-                      <div className="menu-container">
-                        <button className="button-item" onClick={() => navigate(`/editar-animales/${a.id}`)}>
+                      <div
+                        className="menu-container"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          className="button-item"
+                          onClick={() =>
+                            navigate(`/editar-animales/${a.id}`)
+                          }
+                        >
                           Editar
                         </button>
-                        <button className="button-item" onClick={() => eliminarRegistro(a.id)}>
+
+                        <button
+                          className="button-item"
+                          onClick={() => eliminarRegistro(a.id)}
+                        >
                           Eliminar
                         </button>
                       </div>
