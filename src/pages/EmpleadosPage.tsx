@@ -18,7 +18,7 @@ export default function EmpleadosPage() {
   const [data, setData] = useState<Empleado[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+
 
   useEffect(() => {
     document.title = "Empleados | Veterinaria";

@@ -10,7 +10,7 @@ export default function FormularioUsuario() {
 
   const [formData, setFormData] = useState<FormData>({
     tabla: "",
-  });
+  })
 
   const [mensaje, setMensaje] = useState<string>("");
 

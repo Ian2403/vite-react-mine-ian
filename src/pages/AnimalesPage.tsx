@@ -16,7 +16,6 @@ export default function AnimalesPage() {
   const [data, setData] = useState<Animal[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -47,7 +46,6 @@ export default function AnimalesPage() {
   // cerrar menú al hacer click fuera
   useEffect(() => {
     const handleClickOutside = () => {
-      setOpenMenuId(null);
     };
 
     document.addEventListener("click", handleClickOutside);
@@ -58,13 +56,7 @@ export default function AnimalesPage() {
   }, []);
 
   // función toggle
-  const toggleMenu = (id: string) => {
-    if (openMenuId === id) {
-      setOpenMenuId(null);
-    } else {
-      setOpenMenuId(id);
-    }
-  };
+  
 
   const eliminarRegistro = async (id: string) => {
     try {
@@ -73,7 +65,6 @@ export default function AnimalesPage() {
       });
 
       setData(data.filter((p) => p.id !== id));
-      setOpenMenuId(null);
     } catch (error) {
       console.error("Error al eliminar:", error);
     }

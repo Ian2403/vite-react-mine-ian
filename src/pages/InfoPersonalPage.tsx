@@ -15,7 +15,7 @@ export default function InfoPersonalPage() {
   const [data, setData] = useState<Personal[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+
 
   useEffect(() => {
     document.title = "Info Personal | Veterinaria";
@@ -107,13 +107,11 @@ export default function InfoPersonalPage() {
                   <td>{p.Estudios}</td>
                   <td>
 
-                    
-  
                       <div className="menu-container">
-                        <button onClick={() => navigate(`/editar-info-personal/${p.id}`)}>
+                        <button className="edit-button"onClick={() => navigate(`/editar-info-personal/${p.id}`)}>
                           Editar
                         </button>
-                        <button onClick={() => eliminarRegistro(p.id)}>
+                        <button className="edit-button"onClick={() => eliminarRegistro(p.id)}>
                           Eliminar
                         </button>
                       </div>

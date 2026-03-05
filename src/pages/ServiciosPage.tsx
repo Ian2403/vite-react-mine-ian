@@ -14,7 +14,7 @@ export default function ServiciosPage() {
   const [data, setData] = useState<Servicio[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+  
 
   useEffect(() => {
     document.title = "Servicios | Veterinaria";
@@ -120,11 +120,11 @@ export default function ServiciosPage() {
 
 
                         <div className="menu-container">
-                          <button
+                          <button className="edit-button"
                              onClick={() => navigate(`/editar-servicio/${s.id_servicios}`)}>
                               Editar
                           </button>
-                          <button
+                          <button className="edit-button"
                             onClick={() =>
                               eliminarRegistro(s.id_servicios)
                             }
@@ -132,7 +132,6 @@ export default function ServiciosPage() {
                             Eliminar
                           </button>
                         </div>
-                      
                     </td>
                   </tr>
                 ))
