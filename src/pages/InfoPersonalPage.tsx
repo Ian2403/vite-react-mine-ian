@@ -105,16 +105,10 @@ export default function InfoPersonalPage() {
                   <td>{p.Altura}</td>
                   <td>{p.Sexo}</td>
                   <td>{p.Estudios}</td>
-                  <td style={{ position: "relative" }}>
-                    <button
-                      className="menu-btn"
-                      onClick={() =>
-                        setOpenMenuId(openMenuId === p.id ? null : p.id)
-                      }
-                    >
-                      <span className="dots">⋮</span>
-                    </button>
-                    {openMenuId === p.id && (
+                  <td>
+
+                    
+  
                       <div className="menu-container">
                         <button onClick={() => navigate(`/editar-info-personal/${p.id}`)}>
                           Editar
@@ -123,7 +117,7 @@ export default function InfoPersonalPage() {
                           Eliminar
                         </button>
                       </div>
-                    )}
+                    
                   </td>
                 </tr>
               ))}

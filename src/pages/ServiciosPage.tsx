@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 type Servicio = {
   id_servicios: string;
-  Tipos_servicios: string;
+  tipos_servicios: string;
   Disponibilidad: string;
   Horario: string;
   Encargado: string;
@@ -97,7 +97,7 @@ export default function ServiciosPage() {
                 <th>Horario</th>
                 <th>Encargado</th>
                 <th>Número de pacientes</th>
-                <th>Acciones</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -111,26 +111,14 @@ export default function ServiciosPage() {
                 data.map((s) => (
                   <tr key={s.id_servicios}>
                     <td>{s.id_servicios}</td>
-                    <td>{s.Tipos_servicios}</td>
+                    <td>{s.tipos_servicios}</td>
                     <td>{s.Disponibilidad}</td>
                     <td>{s.Horario}</td>
                     <td>{s.Encargado}</td>
                     <td>{s.Numero_pacientes}</td>
                     <td style={{ position: "relative" }}>
-                      <button
-                        className="menu-btn"
-                        onClick={() =>
-                          setOpenMenuId(
-                            openMenuId === s.id_servicios
-                              ? null
-                              : s.id_servicios
-                          )
-                        }
-                      >
-                        <span className="dots">⋮</span>
-                      </button>
 
-                      {openMenuId === s.id_servicios && (
+
                         <div className="menu-container">
                           <button
                              onClick={() => navigate(`/editar-servicio/${s.id_servicios}`)}>
@@ -144,7 +132,7 @@ export default function ServiciosPage() {
                             Eliminar
                           </button>
                         </div>
-                      )}
+                      
                     </td>
                   </tr>
                 ))

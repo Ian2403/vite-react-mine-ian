@@ -155,23 +155,9 @@ export default function AnimalesPage() {
                   <td>{a.Dieta}</td>
 
                   <td style={{ position: "relative" }}>
-                    <button
-                      className="menu-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleMenu(a.id);
-                      }}
-                    >
-                      <span className="dots">⋮</span>
-                    </button>
 
-                    {openMenuId === a.id && (
-                      <div
-                        className="menu-container"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <button
-                          className="button-item"
+
+                        <button className="edit-button"
                           onClick={() =>
                             navigate(`/editar-animales/${a.id}`)
                           }
@@ -180,13 +166,13 @@ export default function AnimalesPage() {
                         </button>
 
                         <button
-                          className="button-item"
+                          className="edit-button"
                           onClick={() => eliminarRegistro(a.id)}
                         >
                           Eliminar
                         </button>
-                      </div>
-                    )}
+   
+                    
                   </td>
                 </tr>
               ))}

@@ -108,7 +108,7 @@ export default function EmpleadosPage() {
                 <th>Fecha</th>
                 <th>Salario</th>
                 <th>Activo</th>
-                <th>Acciones</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -132,25 +132,15 @@ export default function EmpleadosPage() {
                     </span>
                   </td>
                   <td style={{ position: "relative" }}>
-                    <button
-                      className="menu-btn"
-                      onClick={() =>
-                        setOpenMenuId(openMenuId === e.id_empleado ? null : e.id_empleado)
-                      }
-                    >
-                      <span className="dots">⋮</span>
-                    </button>
-                    {openMenuId === e.id_empleado && (
-                      <div className="menu-container" >
-                        <button
+                    
+
+                        <button className="edit-button"
                              onClick={() => navigate(`/editar-empleados/${e.id_empleado}`)}>
                               Editar
                           </button>
-                        <button onClick={() => eliminarRegistro(e.id_empleado)}>
+                        <button className="edit-button" onClick={() => eliminarRegistro(e.id_empleado)}>
                           Eliminar
                         </button>
-                      </div>
-                    )}
                   </td>
                 </tr>
               ))}
