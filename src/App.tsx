@@ -18,6 +18,7 @@ import EditServiciosPage from "./layouts/edit/EditServiciosPage.tsx";
 import EditAnimalesPage from "./layouts/edit/EditAnimalesPage.tsx";
 import EditInfoPersonalPage from "./layouts/edit/EditInfoPersonalPage.tsx";
 import EditEmpleadosPage from "./layouts/edit/EditEmpleadosPage.tsx";
+import AddCitasPage from "./layouts/add/AddCitaPage.tsx";
 
 // ==========================================
 // EL GUARDIA DE SEGURIDAD (Ruta Protegida)
@@ -57,6 +58,7 @@ export default function App() {
           <Route path="/agregar-info-personal" element={<AddInfoPersonalPage />} />
           <Route path="/agregar-servicios" element={<AddServiciosPage />} />
           <Route path="/agregar-empleados" element={<AddEmpleadosPage />} />
+          <Route path="/agregar-citas" element={<AddCitasPage />} />
           {/* Ruta comodín para editar según la tabla seleccionada */} 
           <Route path="/editar-servicio/:id" element={<EditServiciosPage />} />
           <Route path="/editar-animales/:id" element={<EditAnimalesPage />} />

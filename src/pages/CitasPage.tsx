@@ -14,7 +14,7 @@ export default function HomePage() {
   useEffect(() => {
     document.title = "Inicio | Veterinaria";
 
-    // Aquí iría tu fetch a la API
+    // Aquí iría tu fetch a la API https://veterinaria-mine.vercel.app/api/citas/
     // fetch("http://localhost:3000/citas")
     //   .then(res => res.json())
     //   .then(data => setCitas(data));

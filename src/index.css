@@ -1,14 +1,14 @@
 :root{
-  --bg: #0b1220;
-  --panel: rgba(17, 31, 51, .85);
-  --text: #e9eef7;
-  --muted: #a8b3c7;
-  --border: rgba(255,255,255,.10);
-  --shadow: 0 10px 30px rgba(0,0,0,.25);
-  --radius: 16px;
-  --accent: #66a3ff;
-  --good: #3ddc97;
-  --bad: #ff6b6b;
+    --bg: #94B4C1;
+    --panel: #456882;
+    --text: #ECEFCA;
+    --muted: #c0e7e6;
+    --border: rgba(12, 48, 53, 0.1);
+    --shadow: 0 10px 30px rgba(13, 19, 17, 0.25);
+    --radius: 16px;
+    --accent: #a5ec54;
+    --good: #3ddc97;
+    --bad: #ff6b6b;
 }
 
 *{ box-sizing: border-box; }
@@ -46,8 +46,13 @@ a:hover{ text-decoration: underline; }
   box-shadow: var(--shadow);
 }
 
+.card-inner{
+  background: #ECEFCA;
+}
+
 .page{
   padding: 18px;
+  background: #415E72;
 }
 
 .inner{
@@ -75,8 +80,8 @@ a:hover{ text-decoration: underline; }
 
 .btn{
   border: 1px solid var(--border);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
+  background: #94B4C1;
+  color: #1e3d5d;
   padding: 10px 14px;
   border-radius: 12px;
   cursor: pointer;
@@ -95,23 +100,24 @@ a:hover{ text-decoration: underline; }
 }
 
 
-/* estilo para Select */
+
 
 
 /* botón para agregar*/
 .btnadd{ 
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
-  padding: 10px 14px;
-  border-radius: 12px;
-  cursor: pointer;
+     border: 1px solid var(--border);
+    background: #94B4C1;
+    color: #1e3d5d;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
 }
+
 
 .btnadd:hover{ 
   font-weight: bold;
-  background-color: #fcfcfc;
-  color: #1d3557;
+  background-color: #cbd6bf;
+  color: #1f3f2a;
   padding: 14px 14px;
   border: none;
   border-radius: 12px;
@@ -148,14 +154,14 @@ table{
   width: 100%;
   border-collapse: collapse;
   min-width: 1000px;
-  background: rgba(0,0,0,.12);
+  background: #32516b;
   color: var(--text);
 }
 
 thead th{
   position: sticky;
   top: 0;
-  background: rgba(15, 26, 43, .95);
+  background: #203452;
   backdrop-filter: blur(10px);
   text-align: left;
   padding: 12px 12px;
@@ -167,7 +173,7 @@ thead th{
 
 tbody td{
   padding: 12px 12px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid #254569;
   white-space: nowrap;
   color: var(--text);
 }
@@ -209,8 +215,8 @@ tbody tr:hover{
 
 .button:hover{ 
   font-weight: bold;
-  background-color: #fcfcfc;
-  color: #1d3557;
+  background-color: #cbd6bf;
+  color: #1f3f2a;
   padding: 14px 14px;
   border: none;
   border-radius: 12px;
@@ -230,8 +236,8 @@ tbody tr:hover{
 
 .button-cancel:hover{ 
   font-weight: bold;
-  background-color: #fc8989;
-  color: #1d3557;
+  background-color: #EE6983;
+  color: #850E35;
   padding: 14px 14px;
   border: none;
   border-radius: 12px;
