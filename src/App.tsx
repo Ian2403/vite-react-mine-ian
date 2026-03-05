@@ -12,6 +12,8 @@ import AddAnimalesPage from "./layouts/add/AddAnimalesPage.tsx";
 import AddInfoPersonalPage from "./layouts/add/AddInfoPersonalPage.tsx";
 import AddServiciosPage from "./layouts/add/AddServiciosPage.tsx";
 import AddEmpleadosPage from "./layouts/add/AddEmpleadosPage.tsx";
+// Importarcion para editar informacion
+import EditServiciosPage from "./layouts/edit/EditServiciosPage.tsx";
 
 // ==========================================
 // EL GUARDIA DE SEGURIDAD (Ruta Protegida)
@@ -45,12 +47,16 @@ export default function App() {
           <Route path="/empleados" element={<EmpleadosPage />} />
           <Route path="/servicios" element={<ServiciosPage />} />
           <Route path="/informacion-nueva" element={<InformacionNuevaPage />} />
-          {/* Ruta comodín para editar según la tabla seleccionada */}       
+          {/* Ruta comodín para agregar según la tabla seleccionada */}       
           <Route path="/agregar-animales" element={<AddAnimalesPage />} />
           <Route path="/agregar-info-personal" element={<AddInfoPersonalPage />} />
           <Route path="/agregar-servicios" element={<AddServiciosPage />} />
           <Route path="/agregar-empleados" element={<AddEmpleadosPage />} />
+          {/* Ruta comodín para editar según la tabla seleccionada */} 
+          <Route path="/editar-servicio/:id" element={<EditServiciosPage />} />
 
+          
+          
         </Route>
       </Route>
 

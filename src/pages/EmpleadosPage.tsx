@@ -49,6 +49,21 @@ export default function EmpleadosPage() {
     return d.toLocaleDateString();
   };
 
+    const eliminarRegistro = async (id_empleado: number) => {
+  try {
+    await fetch(`https://veterinaria-mine.vercel.app/api/empleadosinfo/${id_empleado}`, {
+      method: "DELETE",
+    });
+
+    // Actualizar estado quitando el registro eliminado
+    setData(data.filter((p) => p.id_empleado !== id_empleado));
+  } catch (error) {
+    console.error("Error al eliminar:", error);
+  }
+};    
+
+
+
   return (
     <div className="card page">
       <div className="container" style={{ display: "flex", alignItems: "center", gap: "12px", flexDirection: "row", alignContent: "center", flexWrap: "nowrap", justifyContent: "space-between" }}>
@@ -124,9 +139,11 @@ export default function EmpleadosPage() {
                       <span className="dots">⋮</span>
                     </button>
                     {openMenuId === e.id_empleado && (
-                      <div className="menu">
+                      <div className="menu-container" >
                         <button /* … */>Editar</button>
-                        <button /* … */>Eliminar</button>
+                        <button onClick={() => eliminarRegistro(e.id_empleado)}>
+                          Eliminar
+                        </button>
                       </div>
                     )}
                   </td>

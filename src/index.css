@@ -204,6 +204,7 @@ tbody tr:hover{
   border-radius: 12px;
   cursor: pointer;
   text-align: center;
+  gap: 14px;
 }
 
 .button:hover{ 

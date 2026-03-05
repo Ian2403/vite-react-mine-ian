@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Animal = {
   id: string;
@@ -40,6 +41,21 @@ export default function AnimalesPage() {
 
     consultar();
   }, []);
+
+    const eliminarRegistro = async (id: string) => {
+  try {
+    await fetch(`https://veterinaria-mine.vercel.app/api/animales/${id}`, {
+      method: "DELETE",
+    });
+
+
+    setData(data.filter((p) => p.id !== id));
+  } catch (error) {
+    console.error("Error al eliminar:", error);
+  }
+};
+
+const navigate = useNavigate();
 
   return (
     <div className="card page">
@@ -113,9 +129,13 @@ export default function AnimalesPage() {
                       <span className="dots">⋮</span>
                     </button>
                     {openMenuId === a.id && (
-                      <div className="menu">
-                        <button /* … */>Editar</button>
-                        <button /* … */>Eliminar</button>
+                      <div className="menu-container">
+                        <button className="button-item" onClick={() => navigate(`/editar-animales/${a.id}`)}>
+                          Editar
+                        </button>
+                        <button className="button-item" onClick={() => eliminarRegistro(a.id)}>
+                          Eliminar
+                        </button>
                       </div>
                     )}
                   </td>
