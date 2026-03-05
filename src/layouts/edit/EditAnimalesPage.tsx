@@ -2,28 +2,32 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 type Animal = {
-  id_animales: string;
-  Nombre: string;
-  Especie: string;
+  id: string;
+  Animal: string;
   Raza: string;
-  Edad: string;
-  Sexo: string;
-  Peso: string;
+  Nombre: string;
+  Años: string;
+  Sintomas: string;
+  Vacunación: boolean;
+  Dieta: string;
 };
 
 export default function EditarAnimal() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState<Animal>({
-    id_animales: "",
-    Nombre: "",
-    Especie: "",
-    Raza: "",
-    Edad: "",
-    Sexo: "",
-    Peso: "",
-  });
+const [form, setForm] = useState<Animal>({
+  id: "",
+  Animal: "",
+  Raza: "",
+  Nombre: "",
+  Años: "",
+  Sintomas: "",
+  Vacunación: false,
+  Dieta: "",
+});
+
+const [mensaje, setMensaje] = useState("");
 
   useEffect(() => {
     const obtenerAnimal = async () => {
@@ -66,7 +70,7 @@ export default function EditarAnimal() {
 
       navigate("/animales");
     } catch (error) {
-      console.error("Error al actualizar:", error);
+      console.error("Hubo un error al actualizar:", error);
     }
   };
 
@@ -77,18 +81,10 @@ export default function EditarAnimal() {
       <form className="grid" onSubmit={guardar}>
         <input
           className="input"
-          name="Nombre"
-          value={form.Nombre}
+          name="Animal"
+          value={form.Animal}
           onChange={handleChange}
-          placeholder="Nombre"
-        />
-
-        <input
-          className="input"
-          name="Especie"
-          value={form.Especie}
-          onChange={handleChange}
-          placeholder="Especie"
+          placeholder="Tipo de animal"
         />
 
         <input
@@ -101,26 +97,47 @@ export default function EditarAnimal() {
 
         <input
           className="input"
-          name="Edad"
-          value={form.Edad}
+          name="Nombre"
+          value={form.Nombre}
           onChange={handleChange}
-          placeholder="Edad"
+          placeholder="Nombre"
         />
 
         <input
           className="input"
-          name="Sexo"
-          value={form.Sexo}
+          name="Años"
+          value={form.Años}
           onChange={handleChange}
-          placeholder="Sexo"
+          placeholder="Edad en años"
         />
 
         <input
           className="input"
-          name="Peso"
-          value={form.Peso}
+          name="Sintomas"   
+          value={form.Sintomas}
           onChange={handleChange}
-          placeholder="Peso"
+          placeholder="Síntomas"
+        />
+
+        <input
+          className="input"
+          name="Vacunación" 
+          value={form.Vacunación ? "Sí" : "No"}
+          onChange={(e) =>
+            setForm({
+              ...form,  
+              Vacunación: e.target.value.toLowerCase() === "sí",
+            })
+          }
+          placeholder="Vacunación (Sí/No)"
+        />  
+
+        <input
+          className="input"
+          name="Dieta"
+          value={form.Dieta}
+          onChange={handleChange}
+          placeholder="Dieta"
         />
 
         <button className="button" type="submit">

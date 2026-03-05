@@ -58,7 +58,6 @@ console.log("Formulario enviado con datos:", formData);
       const data = await response.json();
 
       if (response.ok) {
-        setMensaje("Persona registrada correctamente 👤");
         setTimeout(() => navigate("/info-personal"), 1500);
       } else {
         setMensaje(data.error);

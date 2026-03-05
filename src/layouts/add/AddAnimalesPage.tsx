@@ -61,7 +61,6 @@ console.log("Formulario enviado con datos:", formData);
       const data = await response.json();
 
       if (response.ok) {
-        setMensaje("Animal registrado correctamente 🐾");
         setTimeout(() => navigate("/animales"), 1500);
       } else {
         setMensaje(data.error);

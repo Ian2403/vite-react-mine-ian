@@ -68,7 +68,6 @@ console.log("Formulario enviado con datos:", formData);
       const data = await response.json();
 
       if (response.ok) {
-        setMensaje("Empleado registrado correctamente 👨‍⚕️");
         setTimeout(() => navigate("/empleados"), 1500);
       } else {
         setMensaje(data.error);

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Personal = {
   id: string;
@@ -10,6 +11,7 @@ type Personal = {
 };
 
 export default function InfoPersonalPage() {
+  const navigate = useNavigate();
   const [data, setData] = useState<Personal[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -45,7 +47,6 @@ export default function InfoPersonalPage() {
       method: "DELETE",
     });
 
-    // Actualizar estado quitando el registro eliminado
     setData(data.filter((p) => p.id !== id));
   } catch (error) {
     console.error("Error al eliminar:", error);
@@ -115,7 +116,9 @@ export default function InfoPersonalPage() {
                     </button>
                     {openMenuId === p.id && (
                       <div className="menu-container">
-                        <button /* … */>Editar</button>
+                        <button onClick={() => navigate(`/editar-info-personal/${p.id}`)}>
+                          Editar
+                        </button>
                         <button onClick={() => eliminarRegistro(p.id)}>
                           Eliminar
                         </button>

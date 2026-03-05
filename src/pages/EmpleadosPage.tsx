@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Empleado = {
   id_empleado: number;
@@ -62,6 +63,7 @@ export default function EmpleadosPage() {
   }
 };    
 
+  const navigate = useNavigate();
 
 
   return (
@@ -140,7 +142,10 @@ export default function EmpleadosPage() {
                     </button>
                     {openMenuId === e.id_empleado && (
                       <div className="menu-container" >
-                        <button /* … */>Editar</button>
+                        <button
+                             onClick={() => navigate(`/editar-empleados/${e.id_empleado}`)}>
+                              Editar
+                          </button>
                         <button onClick={() => eliminarRegistro(e.id_empleado)}>
                           Eliminar
                         </button>

@@ -37,7 +37,7 @@ export default function NuevoServicioPage() {
  
 
     try {
-      const response = await fetch("https://veterinaria-mine.vercel.app/api/servicios", {
+      const response = await fetch("https://veterinaria-mine.vercel.app/api/infoservicios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,6 @@ export default function NuevoServicioPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setMensaje("Servicio registrado correctamente ");
         setTimeout(() => navigate("/servicios"), 1500);
       } else {
         setMensaje(data.error);
